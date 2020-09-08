@@ -190,3 +190,7 @@ input:checked + .slider:before {
   text-align: center;
   cursor: pointer;
 }
+
+.drum-button:active {
+  transform: scale(0.98);
+}

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
+import Button from "./ButtonComponent";
 
 class App extends Component {
   constructor(props) {
@@ -8,6 +9,7 @@ class App extends Component {
     this.state = {
       volume: 0,
       text: "sample",
+      buttons: ["q", "w", "e", "a", "s", "d", "z", "x", "c"],
     };
 
     this.volChange = this.volChange.bind(this);
@@ -57,15 +59,7 @@ class App extends Component {
           </div>
         </div>
         <div id="drum-button-area">
-          <div className="drum-button">1</div>
-          <div className="drum-button">2</div>
-          <div className="drum-button">3</div>
-          <div className="drum-button">4</div>
-          <div className="drum-button">5</div>
-          <div className="drum-button">6</div>
-          <div className="drum-button">7</div>
-          <div className="drum-button">8</div>
-          <div className="drum-button">9</div>
+          <Button />
         </div>
       </div>
     );
