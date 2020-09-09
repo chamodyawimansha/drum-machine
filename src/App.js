@@ -22,44 +22,20 @@ class App extends Component {
     });
   }
 
-  clearDisplay() {}
-
   componentDidMount() {}
   render() {
     return (
-      <div className="App" id="drum-machine">
-        <div id="switch-area">
-          <div className="switch-container">
-            <span className="switch-label">Power</span>
-            <label className="switch">
+      <div id="drum-machine">
+        <div id="drum-machine-panel">
+          <div id="drum-machine-power">
+            <p id="drum-machine-power-label" className="select-off">
+              Power
+            </p>
+            <label class="switch">
               <input type="checkbox" />
-              <span className="slider round"></span>
+              <span class="slider"></span>
             </label>
           </div>
-          <div className="switch-container">
-            <span className="switch-label">Mode</span>
-            <label className="switch">
-              <input type="checkbox" />
-              <span className="slider round"></span>
-            </label>
-          </div>
-          <div id="display">
-            <span id="display-text">{this.state.text}</span>
-          </div>
-          <div className="volume-slider">
-            <input
-              type="range"
-              id="vol-slider"
-              step="1"
-              min="0"
-              max="100"
-              value={this.state.volume}
-              onChange={this.volChange}
-            />
-          </div>
-        </div>
-        <div id="drum-button-area">
-          <Button />
         </div>
       </div>
     );
