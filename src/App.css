@@ -22,6 +22,10 @@
   padding: 20px;
 }
 
+#drum-machine-panel {
+  display: inline-block;
+}
+
 .switch {
   position: relative;
   display: inline-block;
@@ -54,7 +58,7 @@
   width: 10px;
   left: 4px;
   bottom: 4px;
-  background-color: red;
+  background-color: rgb(255, 0, 0);
   -webkit-transition: 0.1s;
   transition: 0.1s;
 }
@@ -77,8 +81,64 @@ input:checked + .slider:before {
   transform: translateX(20px);
 }
 
+#drum-machine-power {
+  margin-bottom: 20px;
+}
 #drum-machine-power-label {
   font-weight: 800;
   margin-right: 10px;
   display: inline-block;
+}
+
+#drum-machine-display {
+  height: 44px;
+  width: 154px;
+  background: #868686;
+  border: 4px solid #6d6d6d;
+  margin-bottom: 20px;
+}
+
+#drum-machine-mode-label {
+  margin-bottom: 0;
+  font-weight: 800;
+}
+
+.drum-machine-mode-label {
+  font-weight: 800;
+  margin: 0 5px;
+}
+
+#drum-machine-mode {
+  text-align: center;
+}
+
+#drum-machine-mode {
+  margin-bottom: 20px;
+}
+
+.volume-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  background: rgb(44, 44, 44);
+  outline: none;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+  position: relative;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 25px;
+  background: rgb(255, 0, 0);
+  cursor: pointer;
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 10px;
+  height: 25px;
+  background: rgb(255, 0, 0);
+  cursor: pointer;
 }
