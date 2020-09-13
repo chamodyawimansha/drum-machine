@@ -16,12 +16,26 @@
 }
 
 #drum-machine {
-  width: 660px;
-  min-height: 300px;
   background: #d3d3d3;
   padding: 20px;
+  width: 500px;
+  min-height: 600px;
 }
 
+/* @media (min-width: 576px) {
+  #drum-machine {
+    width: 400px;
+    min-height: 300px;
+  }
+}
+
+@media (min-width: 768px) {
+  #drum-machine {
+    width: 660px;
+    min-height: 300px;
+  }
+} */
+/* 
 #drum-machine-panel {
   display: inline-block;
 }
@@ -141,4 +155,4 @@ input:checked + .slider:before {
   height: 25px;
   background: rgb(255, 0, 0);
   cursor: pointer;
-}
+} */
