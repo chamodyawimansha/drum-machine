@@ -28,14 +28,36 @@ class App extends Component {
       <div id="drum-machine">
         <div id="switch-panel">
           <div id="switch-panel_power">
-            <p id="power-label">Power</p>
-            <label id="power-switch">
-              <input type="checkbox" id="power-input" />
-              <span id="power-slider"></span>
+            <p id="power-label" className="select-off switch-label">
+              Power
+            </p>
+            <label id="power-switch" className="panel-switch">
+              <input
+                type="checkbox"
+                id="power-input"
+                className="panel-switch-input"
+              />
+              <span id="power-slider" className="panel-switch-slider"></span>
             </label>
           </div>
-          <div id="switch-panel_display"></div>
-          <div id="switch-panel_mode"></div>
+          <div id="switch-panel_display">
+            <div id="display-panel"></div>
+          </div>
+          <div id="switch-panel_mode">
+            <p id="" className="select-off switch-label">
+              Mode
+            </p>
+            <span id="mode-a-label">A</span>
+            <label id="mode-switch" className="panel-switch">
+              <input
+                type="checkbox"
+                id="mode-input"
+                className="panel-switch-input"
+              />
+              <span id="mode-slider" className="panel-switch-slider"></span>
+            </label>
+            <span id="mode-b-label">B</span>
+          </div>
           <div id="switch-panel_volume"></div>
         </div>
       </div>
