@@ -26,8 +26,18 @@ class App extends Component {
   render() {
     return (
       <div id="drum-machine">
-        <div id="switch-panel"></div>
-        <div id="button-panel"></div>
+        <div id="switch-panel">
+          <div id="switch-panel_power">
+            <p id="power-label">Power</p>
+            <label id="power-switch">
+              <input type="checkbox" id="power-input" />
+              <span id="power-slider"></span>
+            </label>
+          </div>
+          <div id="switch-panel_display"></div>
+          <div id="switch-panel_mode"></div>
+          <div id="switch-panel_volume"></div>
+        </div>
       </div>
     );
   }
