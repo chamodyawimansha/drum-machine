@@ -8,7 +8,7 @@ class App extends Component {
     super(props);
     this.state = {
       volume: 0,
-      text: "sample",
+      text: "",
       buttons: ["q", "w", "e", "a", "s", "d", "z", "x", "c"],
     };
 
@@ -41,7 +41,7 @@ class App extends Component {
             </label>
           </div>
           <div id="switch-panel_display">
-            <div id="display-panel"></div>
+            <div id="display-panel">{this.state.text}</div>
           </div>
           <div id="switch-panel_mode">
             <p id="" className="select-off switch-label">
@@ -58,7 +58,17 @@ class App extends Component {
             </label>
             <span id="mode-b-label">B</span>
           </div>
-          <div id="switch-panel_volume"></div>
+          <div id="switch-panel_volume">
+            <input
+              type="range"
+              min="1"
+              max="100"
+              value={this.state.volume}
+              className="slider"
+              id="vol-slider"
+              onChange={this.volChange}
+            ></input>
+          </div>
         </div>
       </div>
     );
