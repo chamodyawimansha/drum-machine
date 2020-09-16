@@ -15,11 +15,25 @@ class App extends Component {
     this.volChange = this.volChange.bind(this);
   }
 
+  //This method will clear the display
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.text !== "") {
+      setTimeout(() => {
+        this.setState({
+          text: "",
+        });
+      }, 3000);
+    }
+  }
+
+  // change the volume
   volChange(event) {
     this.setState({
       volume: event.target.value,
       text: event.target.value,
     });
+
+    // return
   }
 
   componentDidMount() {}
