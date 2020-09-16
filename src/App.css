@@ -157,3 +157,27 @@
   background: rgb(102, 255, 0);
   cursor: pointer;
 }
+
+#button-panel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.drum-button {
+  width: 140px;
+  height: 140px;
+  background: red;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 800;
+  font-size: 2rem;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.drum-button:active {
+  transform: scale(0.97);
+}

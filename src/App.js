@@ -61,7 +61,9 @@ class App extends Component {
             <p id="" className="select-off switch-label">
               Mode
             </p>
-            <span id="mode-a-label">A</span>
+            <span id="mode-a-label" className="select-off">
+              A
+            </span>
             <label id="mode-switch" className="panel-switch">
               <input
                 type="checkbox"
@@ -70,7 +72,9 @@ class App extends Component {
               />
               <span id="mode-slider" className="panel-switch-slider"></span>
             </label>
-            <span id="mode-b-label">B</span>
+            <span id="mode-b-label" className="select-off">
+              B
+            </span>
           </div>
           <div id="switch-panel_volume">
             <input
@@ -83,6 +87,13 @@ class App extends Component {
               onChange={this.volChange}
             ></input>
           </div>
+        </div>
+        <div id="button-panel">
+          {this.state.buttons.map((letter) => {
+            return (
+              <Button buttonLetter={letter} buttonId={"letter-" + letter} />
+            );
+          })}
         </div>
       </div>
     );
