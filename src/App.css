@@ -25,7 +25,7 @@
 #switch-panel {
   display: flex;
   flex-wrap: wrap;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 #switch-panel_power {
