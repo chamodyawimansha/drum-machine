@@ -101,6 +101,7 @@ class App extends Component {
   handleDrumPadClick(event) {
     let sound = this.state.modeOne.find((item) => item.id == event.target.id);
     let audio = new Audio(sound.url);
+    audio.volume = this.state.volume / 100;
     audio.play();
     this.setState({
       text: sound.name,
@@ -150,7 +151,7 @@ class App extends Component {
           <div id="switch-panel_volume">
             <input
               type="range"
-              min="1"
+              min="0"
               max="100"
               value={this.state.volume}
               className="slider"
