@@ -20,48 +20,56 @@ class App extends Component {
         {
           keyCode: 87,
           keyTrigger: "W",
+          name: "Heater 2",
           id: "Heater-2",
           url: "https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3",
         },
         {
           keyCode: 69,
           keyTrigger: "E",
+          name: "Heater 3",
           id: "Heater-3",
           url: "https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3",
         },
         {
           keyCode: 65,
           keyTrigger: "A",
+          name: "Heater 4",
           id: "Heater-4",
           url: "https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3",
         },
         {
           keyCode: 83,
           keyTrigger: "S",
+          name: "Clap",
           id: "Clap",
           url: "https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3",
         },
         {
           keyCode: 68,
           keyTrigger: "D",
+          name: "Open HH",
           id: "Open-HH",
           url: "https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3",
         },
         {
           keyCode: 90,
           keyTrigger: "Z",
+          name: "Kick n' Hat",
           id: "Kick-n'-Hat",
           url: "https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3",
         },
         {
           keyCode: 88,
           keyTrigger: "X",
+          name: "Kick",
           id: "Kick",
           url: "https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3",
         },
         {
           keyCode: 67,
           keyTrigger: "C",
+          name: "Closed HH",
           id: "Closed-HH",
           url: "https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3",
         },
@@ -91,9 +99,12 @@ class App extends Component {
   }
 
   handleDrumPadClick(event) {
-    let url = this.state.modeOne.find((item) => item.id == event.target.id).url;
-    let audio = new Audio(url);
+    let sound = this.state.modeOne.find((item) => item.id == event.target.id);
+    let audio = new Audio(sound.url);
     audio.play();
+    this.setState({
+      text: sound.name,
+    });
   }
 
   componentDidMount() {}
