@@ -68,6 +68,7 @@ class App extends Component {
       ],
     };
     this.volChange = this.volChange.bind(this);
+    this.handleDrumPadClick = this.handleDrumPadClick.bind(this);
   }
 
   //This method clears the display
@@ -90,7 +91,9 @@ class App extends Component {
   }
 
   handleDrumPadClick(event) {
-    console.log(event);
+    let url = this.state.modeOne.find((item) => item.id == event.target.id).url;
+    let audio = new Audio(url);
+    audio.play();
   }
 
   componentDidMount() {}
