@@ -79,14 +79,9 @@ class App extends Component {
     this.volChange = this.volChange.bind(this);
     this.handleDrumPadClick = this.handleDrumPadClick.bind(this);
     this.handleDeviceOnState = this.handleDeviceOnState.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.playSound = this.playSound.bind(this);
   }
-
-  // handle mode change
-  // handle display timeout
-  // imporove the code
-  /////
-  ///   DO above things before lunch
-  /////
 
   handleDeviceOnState() {
     this.setState((state) => ({
@@ -94,14 +89,14 @@ class App extends Component {
     }));
   }
 
-  //This method clears the display
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.text !== "") {
-      setTimeout(() => {
-        this.setState({
-          text: "",
-        });
-      }, 1000);
+  handleKeyPress(event) {
+    if (this.state.power === false) return;
+    let sound = this.state.modeOne.find(
+      (item) => item.keyCode === event.keyCode
+    );
+
+    if (sound) {
+      this.playSound(sound.id);
     }
   }
 
@@ -116,13 +111,36 @@ class App extends Component {
 
   handleDrumPadClick(event) {
     if (this.state.power === false) return;
-    let sound = this.state.modeOne.find((item) => item.id == event.target.id);
+    this.playSound(event.target.id);
+  }
+
+  playSound(id) {
+    let sound = this.state.modeOne.find((item) => item.id === id);
     let audio = new Audio(sound.url);
     audio.volume = this.state.volume / 100;
     audio.play();
+
     this.setState({
       text: sound.name,
     });
+  }
+
+  componentDidMount() {
+    document.addEventListener("keydown", this.handleKeyPress);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleKeyPress);
+  }
+  //This method clears the display
+  componentDidUpdate() {
+    if (this.state.text !== "") {
+      setTimeout(() => {
+        this.setState({
+          text: "",
+        });
+      }, 1000);
+    }
   }
 
   render() {
@@ -144,7 +162,7 @@ class App extends Component {
             </label>
           </div>
           <div id="switch-panel_display">
-            <div id="display-panel">{this.state.text}</div>
+            <div id="display">{this.state.text}</div>
           </div>
           <div id="switch-panel_mode">
             <p id="" className="select-off switch-label">

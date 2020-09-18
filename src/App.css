@@ -109,7 +109,7 @@
   display: inline-block;
 }
 
-#display-panel {
+#display {
   background: #868686;
   font-weight: 800;
   text-align: center;
@@ -178,6 +178,6 @@
   cursor: pointer;
 }
 
-.drum-button:active {
+.clicked {
   transform: scale(0.97);
 }
