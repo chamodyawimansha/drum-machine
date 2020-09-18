@@ -75,12 +75,77 @@ class App extends Component {
           url: "https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3",
         },
       ],
+      modeTwo: [
+        {
+          keyCode: 81,
+          keyTrigger: "Q",
+          name: "Chord 1",
+          id: "Chord_1",
+          url: "https://s3.amazonaws.com/freecodecamp/drums/Chord_1.mp3",
+        },
+        {
+          keyCode: 87,
+          keyTrigger: "W",
+          name: "Chord 2",
+          id: "Chord-2",
+          url: "https://s3.amazonaws.com/freecodecamp/drums/Chord_2.mp3",
+        },
+        {
+          keyCode: 69,
+          keyTrigger: "E",
+          name: "Chord 3",
+          id: "Chord-3",
+          url: "https://s3.amazonaws.com/freecodecamp/drums/Chord_3.mp3",
+        },
+        {
+          keyCode: 65,
+          keyTrigger: "A",
+          name: "Shaker",
+          id: "Heater-4",
+          url:
+            "https://s3.amazonaws.com/freecodecamp/drums/Give_us_a_light.mp3",
+        },
+        {
+          keyCode: 83,
+          keyTrigger: "S",
+          name: "Open HH",
+          id: "Open-HH",
+          url: "https://s3.amazonaws.com/freecodecamp/drums/Dry_Ohh.mp3",
+        },
+        {
+          keyCode: 68,
+          keyTrigger: "D",
+          name: "Closed HH",
+          id: "Closed-HH",
+          url: "https://s3.amazonaws.com/freecodecamp/drums/Bld_H1.mp3",
+        },
+        {
+          keyCode: 90,
+          keyTrigger: "Z",
+          name: "Punchy Kick",
+          id: "Punchy-Kick",
+          url: "https://s3.amazonaws.com/freecodecamp/drums/punchy_kick_1.mp3",
+        },
+        {
+          keyCode: 88,
+          keyTrigger: "X",
+          name: "Side-Stick",
+          id: "Side Stick",
+          url: "https://s3.amazonaws.com/freecodecamp/drums/side_stick_1.mp3",
+        },
+        {
+          keyCode: 67,
+          keyTrigger: "C",
+          name: "Snare",
+          id: "Snare",
+          url: "https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3",
+        },
+      ],
     };
-    this.volChange = this.volChange.bind(this);
+    this.handleVolChange = this.handleVolChange.bind(this);
     this.handleDrumPadClick = this.handleDrumPadClick.bind(this);
     this.handleDeviceOnState = this.handleDeviceOnState.bind(this);
-    this.handleKeyPress = this.handleKeyPress.bind(this);
-    this.playSound = this.playSound.bind(this);
+    // this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   handleDeviceOnState() {
@@ -89,19 +154,7 @@ class App extends Component {
     }));
   }
 
-  handleKeyPress(event) {
-    if (this.state.power === false) return;
-    let sound = this.state.modeOne.find(
-      (item) => item.keyCode === event.keyCode
-    );
-
-    if (sound) {
-      this.playSound(sound.id);
-    }
-  }
-
-  // change the volume
-  volChange(event) {
+  handleVolChange(event) {
     if (this.state.power === false) return;
     this.setState({
       volume: event.target.value,
@@ -111,37 +164,48 @@ class App extends Component {
 
   handleDrumPadClick(event) {
     if (this.state.power === false) return;
-    this.playSound(event.target.id);
-  }
 
-  playSound(id) {
-    let sound = this.state.modeOne.find((item) => item.id === id);
-    let audio = new Audio(sound.url);
-    audio.volume = this.state.volume / 100;
-    audio.play();
+    let audioElement = event.target.children[0];
+    audioElement.volume = this.state.volume / 100;
+    audioElement.play();
 
+    // show name on the display
+    let sound = this.state.modeOne.find((item) => item.id === event.target.id);
     this.setState({
       text: sound.name,
     });
   }
 
-  componentDidMount() {
-    document.addEventListener("keydown", this.handleKeyPress);
-  }
+  // handleKeyPress(event) {
+  //   if (this.state.power === false) return;
+  //   let sound = this.state.modeOne.find(
+  //     (item) => item.keyCode === event.keyCode
+  //   );
 
-  componentWillUnmount() {
-    document.removeEventListener("keydown", this.handleKeyPress);
-  }
+  //   if (sound) {
+  //     this.playSound(sound.id);
+  //   }
+  // }
+  // playSound()
+
+  // componentDidMount() {
+  //   document.addEventListener("keydown", this.handleKeyPress);
+  // }
+
+  // componentWillUnmount() {
+  //   document.removeEventListener("keydown", this.handleKeyPress);
+  // }
+
   //This method clears the display
-  componentDidUpdate() {
-    if (this.state.text !== "") {
-      setTimeout(() => {
-        this.setState({
-          text: "",
-        });
-      }, 1000);
-    }
-  }
+  // componentDidUpdate() {
+  //   if (this.state.text !== "") {
+  //     setTimeout(() => {
+  //       this.setState({
+  //         text: "",
+  //       });
+  //     }, 1000);
+  //   }
+  // }
 
   render() {
     return (
@@ -191,7 +255,7 @@ class App extends Component {
               value={this.state.volume}
               className="slider"
               id="vol-slider"
-              onChange={this.volChange}
+              onChange={this.handleVolChange}
             ></input>
           </div>
         </div>
