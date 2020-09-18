@@ -7,6 +7,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      power: false,
       volume: 0,
       text: "",
       modeOne: [
@@ -77,6 +78,20 @@ class App extends Component {
     };
     this.volChange = this.volChange.bind(this);
     this.handleDrumPadClick = this.handleDrumPadClick.bind(this);
+    this.handleDeviceOnState = this.handleDeviceOnState.bind(this);
+  }
+
+  // handle mode change
+  // handle display timeout
+  // imporove the code
+  /////
+  ///   DO above things before lunch
+  /////
+
+  handleDeviceOnState() {
+    this.setState((state) => ({
+      power: state.power === false ? true : false,
+    }));
   }
 
   //This method clears the display
@@ -86,12 +101,13 @@ class App extends Component {
         this.setState({
           text: "",
         });
-      }, 3000);
+      }, 1000);
     }
   }
 
   // change the volume
   volChange(event) {
+    if (this.state.power === false) return;
     this.setState({
       volume: event.target.value,
       text: event.target.value,
@@ -99,6 +115,7 @@ class App extends Component {
   }
 
   handleDrumPadClick(event) {
+    if (this.state.power === false) return;
     let sound = this.state.modeOne.find((item) => item.id == event.target.id);
     let audio = new Audio(sound.url);
     audio.volume = this.state.volume / 100;
@@ -108,7 +125,6 @@ class App extends Component {
     });
   }
 
-  componentDidMount() {}
   render() {
     return (
       <div id="drum-machine">
@@ -119,6 +135,7 @@ class App extends Component {
             </p>
             <label id="power-switch" className="panel-switch">
               <input
+                onChange={this.handleDeviceOnState}
                 type="checkbox"
                 id="power-input"
                 className="panel-switch-input"
