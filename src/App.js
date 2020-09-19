@@ -190,39 +190,30 @@ class App extends Component {
   handleKeyPress(event) {
     if (this.state.power === false) return;
 
-    console.log(event.keyCode);
+    let sound = this.state.mode.find((item) => item.keyCode === event.keyCode);
 
-    // let sound = this.state.modeOne.find(
-    //   (item) => item.keyCode === event.keyCode
-    // );
+    if (sound) {
+      var audioElement = document.getElementById(sound.id).childNodes[0];
+      audioElement.volume = this.state.volume / 100;
+      audioElement.play();
 
-    // if (sound) {
-    //   this.playSound(sound.id);
-    // }
+      this.setState({
+        text: sound.name,
+      });
+    }
   }
-  // playSound()
 
   componentDidMount() {
     this.setState({
       mode: this.profileOne,
     });
+
     document.addEventListener("keydown", this.handleKeyPress);
   }
 
   componentWillUnmount() {
     document.removeEventListener("keydown", this.handleKeyPress);
   }
-
-  //This method clears the display
-  // componentDidUpdate() {
-  //   if (this.state.text !== "") {
-  //     setTimeout(() => {
-  //       this.setState({
-  //         text: "",
-  //       });
-  //     }, 1000);
-  //   }
-  // }
 
   render() {
     return (
@@ -286,6 +277,7 @@ class App extends Component {
                 key={btn.keyTrigger}
                 url={btn.url}
                 handle={this.handleDrumPadClick}
+                // ref={btn.id}
               />
             );
           })}

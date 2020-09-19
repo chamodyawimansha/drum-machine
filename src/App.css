@@ -178,6 +178,6 @@
   cursor: pointer;
 }
 
-.clicked {
+.drum-button:active {
   transform: scale(0.97);
 }
